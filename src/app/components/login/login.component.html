@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-sm-6">
+        <img src="https://picsum.photos/600" alt="" class="img-fluid rounded mb-2">
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col">
+                <h3>Login to Second App</h3>
+                <hr>
+        
+                <form 
+                    novalidate
+                    [formGroup]="frm"
+                    (ngSubmit)="onSubmit()"
+                    class="mb-3">
+                
+                    <div class="form-group">
+                        <label for="userName">User Name: </label>
+                        <input  
+                            type="text"
+                            id="userName"
+                            name="userName"
+                            placeholder="Enter user name"
+                            class="form-control"
+                            required
+                            formControlName="userName"
+                            [ngClass]="{ 'is-invalid': (f.userName.touched || f.userName.dirty) && !f.userName.valid }">
+                        <div class="invalid-feedback">
+                            <span *ngIf="(f.userName.touched || f.userName.dirty) && f.userName.errors?.required">This field is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input  
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email"
+                            class="form-control"
+                            required
+                            formControlName="email"
+                            [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty) && !f.email.valid }">   
+                        <div class="invalid-feedback">
+                            <span *ngIf="(f.email.touched || f.email.dirty) && f.email.errors?.required">
+                                This field is required
+                            </span>                            
+                            <span *ngIf="(f.email.touched || f.email.dirty) && f.email.errors?.email">
+                                Invalid email
+                            </span>
+                        </div>
+                    </div>
+                        
+                    <button class="btn btn-primary" type="submit" [disabled]="!frm.valid">Submit</button>&nbsp;
+                    <button class="btn btn-secondary" type="reset">Reset</button>
+
+                </form>
+
+                <div *ngIf="loader" class="alert alert-info" role="alert">Loading...</div>
+                <div *ngIf="message" class="alert alert-danger" role="alert">{{ message }}</div>    
+        
+            </div>
+        </div>
+    </div>
+</div>

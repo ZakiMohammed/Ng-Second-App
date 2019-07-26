@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
+    <a class="navbar-brand" href="#">Second App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">            
+            <li class="nav-item" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="['/home']">Home</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="['/about']">About</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: false }">
+                <a class="nav-link" [routerLink]="['/posts']">Posts</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+            </li>            
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a [routerLink]="['/profile']" class="nav-link">Welcome {{ user?.name }}</a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="['/login']">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+            </li>
+            <li>
+                <a *ngIf="isLoggedIn" class="nav-link" href="#" (click)="onLogoutClick($event)">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

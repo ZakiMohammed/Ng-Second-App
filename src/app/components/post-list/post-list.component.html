@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col">
+        <h3>Posts</h3>
+        <hr>
+        <div class="alert alert-info" role="alert" [hidden]="!loader">Loading please wait...</div>
+        
+        <div class="list-group">
+            <a *ngFor="let post of posts; let i = index;" [routerLink]="['/posts', post.id]" class="list-group-item list-group-item-action">
+                {{ i + 1 }}. {{post.title}}
+            </a>
+            <a *ngIf="posts.length === 0 && !loader" href="#" class="list-group-item list-group-item-action">Post not found</a>
+        </div>
+    </div>
+</div>

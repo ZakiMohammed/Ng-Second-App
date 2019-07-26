@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col">
+        <h3>Your Profile</h3>
+        <hr>        
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <img src="https://picsum.photos/600" alt="" class="img-fluid rounded">
+    </div>
+    <div class="col-sm-8">
+        <div *ngIf="user">
+            <h4>{{ user.name }}</h4>
+            <p>{{ user.email }}</p>
+            <p>{{ user.phone }}</p>
+            <p>{{ user.website }}</p>
+            <p>{{ user.fullAddress }}</p>
+            <p>{{ user.fullCompany }}</p>            
+        </div>
+    </div>
+</div>
