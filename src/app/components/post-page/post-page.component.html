@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col">
+        <h3>Posts</h3>
+        <hr>
+
+        <div class="row mb-3">
+            <div class="col-sm-11">
+                <input type="text" placeholder="Search" class="form-control" [(ngModel)]="pagination.searchText" (input)="pagination.search()">
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-secondary btn-block" type="button" (click)="pagination.order('title')">
+                    {{ pagination.orderDir }}
+                </button>
+            </div>
+        </div>        
+
+        <div class="alert alert-info" role="alert" [hidden]="!loader">Loading please wait...</div>
+
+        <div class="list-group">
+            <a *ngFor="let post of pagination.list; let i = index;" [routerLink]="['/posts', post.id]"
+                class="list-group-item list-group-item-action">
+                {{post.title}}
+            </a>
+            <a *ngIf="pagination.list.length === 0 && !loader" href="javascript:void(0);"
+                class="list-group-item list-group-item-action list-group-item-danger">Post not found</a>
+        </div>
+
+        <div class="mt-1">
+            Showing {{ pagination.index + 1 }} 
+            to 
+            {{ 
+                (pagination.index + pagination.count) > pagination.filterCount ? 
+                    pagination.filterCount : 
+                    pagination.index + pagination.count
+            }}  
+            of {{ pagination.filterCount }} entries 
+            {{
+                (pagination.searchText) ? "(filtered from " + pagination.totalCount + " total entries)" : ""
+            }}
+        </div>
+
+        <nav aria-label="Page navigation example" class="mt-3">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <button class="page-link" type="button" (click)="pagination.first()">
+                        First
+                    </button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link" type="button" (click)="pagination.previous()">
+                        Previous
+                    </button>
+                </li>
+
+                <li class="page-item" *ngFor="let number of pagination.numbers" [class.active]="pagination.currentPage == number">
+                    <button class="page-link" type="button" (click)="pagination.current(number)">{{ number }}</button>
+                </li>
+
+                <li class="page-item">
+                    <button class="page-link" type="button" (click)="pagination.next()">
+                        Next
+                    </button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link" type="button" (click)="pagination.last()">
+                        Last
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
