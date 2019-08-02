@@ -20,6 +20,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'product', component: ProductListComponent },
+  { path: 'product/:id', component: ProductViewComponent },
   { path: 'posts', component: PostPageComponent },
   { path: 'posts/:id', component: PostViewComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

@@ -21,10 +21,14 @@ export class ProductViewComponent implements OnInit {
     let productData = new ProductData();
 
     this.id = this.route.snapshot.params.id;  
-    // this.product = productData.getProduct(+this.id);    
+    this.product = productData.getProduct(+this.id);    
   }
 
   ngOnInit() {    
-    this.productService.getProduct(+this.id).subscribe(response => this.product = response);
+    // this.productService.getProduct(+this.id).subscribe(response => this.product = response);
+  }
+
+  onRatingClick($event: any) {
+    $event.classList.toggle('d-none');
   }
 }

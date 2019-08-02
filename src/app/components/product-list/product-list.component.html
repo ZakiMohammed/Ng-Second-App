@@ -1,15 +1,24 @@
-<h3>Products</h3>
+<div class="row">
+    <div class="col">
+        <h3>Products</h3>
+        <hr>
 
-<!-- <input type="text" placeholder="Search" (input)="onSearchChange($event)"> -->
-<input type="text" placeholder="Search" [(ngModel)]="search">
-<span [hidden]="!loader">&nbsp;Loading please wait...</span>
+        <input type="text" placeholder="Search" [(ngModel)]="search" class="form-control">
+        <div class="alert alert-info" [hidden]="!loader">&nbsp;Loading please wait...</div>
 
-<p>Filtered Text: '{{search}}'</p>
-<ol>
-    <li *ngFor="let product of products">
-        <a [routerLink]="['/product', product.id]">{{product.name}}</a>
-    </li>    
-</ol>
-<ul>
-    <li *ngIf="products.length === 0 && !loader">Product not found</li>
-</ul>
+        <div class="mt-2 mb-2">Filtered Text: '{{search}}'</div>
+        <ul class="list-group">
+            <li *ngFor="let product of products" class="list-group-item">
+                <a [routerLink]="['/product', product.id]">{{product.name}}</a>
+                
+                <app-product-rate 
+                    [overAllRating]="product.overAllRating"
+                    [ratings]="product.ratings"
+                    (ratingClick)="onRatingClick($event)"></app-product-rate>
+
+            </li>
+            <a class="list-group-item list-group-item-danger" *ngIf="products.length === 0 && !loader"
+                href="javascript:void(0);">Product not found</a>
+        </ul>
+    </div>
+</div>

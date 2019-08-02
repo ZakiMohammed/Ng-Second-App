@@ -1,0 +1,10 @@
+<span style="cursor: pointer;" class="badge badge-primary float-right"
+    (click)="onRatingClick($event)">⭐{{overAllRating}}</span>
+
+<small class="d-none">
+    <ul class="list-group list-group-horizontal mt-2">
+        <li class="list-group-item" *ngFor="let rating of ratings">
+            {{ rating.title }}: {{ rating.rate }}
+        </li>
+    </ul>
+</small>
