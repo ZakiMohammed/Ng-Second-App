@@ -1,0 +1,19 @@
+<div class="dropdown">
+    <button class="btn btn-block dropdown-toggle" type="button" id="txtLabel" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" data-display="static">
+        {{ item == null ? 'Select' : getText(item) }}
+        <i class="fas fa-caret-down pt-1"></i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="txtLabel">
+        <input type="text" placeholder="Search" name="search_txtSearch" id="search_txtSearch" [(ngModel)]="searchText"
+            class="form-control" autofocus >
+        <ng-container *ngFor="let item of listFiltered; let i = index;">
+            <button class="dropdown-item" type="button" (click)="onItemClick($event, item)" [value]="getValue(item)">
+                {{ getText(item) }}
+            </button>
+        </ng-container>
+        <ng-container *ngIf="!listFiltered.length">
+            <button class="dropdown-item" type="button" disabled="true">Not records found</button>
+        </ng-container>
+    </div>
+</div>

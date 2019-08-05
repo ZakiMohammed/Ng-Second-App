@@ -1,0 +1,30 @@
+.dropdown .btn {
+    border: 1px solid #e9ecef;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;     
+    padding-right: 20px;  
+}
+.dropdown .btn i {
+    position: absolute;
+    right: 10px;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+.dropdown-menu {
+    right: 0px;
+    max-height: 200px;
+    overflow-y:auto;
+}
+.dropdown-menu input {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 0;
+    padding: .375rem 1.5rem;
+    padding-top: 0px;
+}
+.dropdown-menu input:focus, .dropdown-menu input:active {    
+    box-shadow: none!important;
+}

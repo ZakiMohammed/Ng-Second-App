@@ -22,6 +22,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PostPageComponent } from './components/post-page/post-page.component';
 import { ProductRateComponent } from './components/child/product-rate/product-rate.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
+import { SearchComponent } from './components/child/search/search.component';
 
 @NgModule({
   declarations: [    
@@ -34,7 +36,7 @@ import { ProductRateComponent } from './components/child/product-rate/product-ra
     FooterComponent, 
     ProductComponent, 
     ProductListComponent, 
-    ProductViewComponent, PostListComponent, PostViewComponent, LoginComponent, ProfileComponent, PostPageComponent, ProductRateComponent
+    ProductViewComponent, PostListComponent, PostViewComponent, LoginComponent, ProfileComponent, PostPageComponent, ProductRateComponent, UserViewComponent, SearchComponent
   ],
   imports: [
     BrowserModule,
