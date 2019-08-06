@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
 	selector: 'app-search',
 	templateUrl: './search.component.html',
 	styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-
+export class SearchComponent implements OnInit, OnChanges {
+	
 	@Input('list') list: any[] = [];
 	@Input('value') value: string = 'id';
 	@Input('text') text: string = 'name';
@@ -48,6 +48,11 @@ export class SearchComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.listFiltered = this.list.concat();
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		this.list = changes.list.currentValue;
 		this.listFiltered = this.list.concat();
 	}
 

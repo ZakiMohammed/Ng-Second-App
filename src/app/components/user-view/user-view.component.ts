@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductData, Product } from 'src/app/models/product';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
 	selector: 'app-user-view',
@@ -7,35 +9,19 @@ import { ProductData, Product } from 'src/app/models/product';
 	styleUrls: ['./user-view.component.css']
 })
 export class UserViewComponent implements OnInit {
-
-	item: Product = null;
-	list: Product[] = [];
-	listFiltered: Product[] = [];
-
-	_searchText: string = '';
 	
-	get searchText(): string {
-		return this._searchText;
-	}
-	set searchText(value: string) {		
-		this._searchText = value;
-		if (!this._searchText) {
-			this.listFiltered = this.list.concat();
-			return;
-		}
-		this.listFiltered = this.list.filter(i => i.name.toLowerCase().indexOf(this._searchText.toLowerCase()) !== -1);
-	}
+	users: User[] = [];
+	user: User = null;
 
-	constructor() {
+	constructor(private userService: UserService) {
 	}
 
 	ngOnInit() {
-		this.list = new ProductData().getProducts();
-		this.listFiltered = this.list.concat();
+		this.userService.getUsers().subscribe(users => this.users = users);
 	}
 
-	onItemClick($event: any, selectedItem: Product) {
-		this.item = selectedItem;
+	onItemClick($event: any) {
+		this.user = $event.item;
 	}
 
 }

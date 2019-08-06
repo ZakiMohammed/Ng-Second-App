@@ -1,75 +1,34 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-sm-12">
 
-        <div class="dropdown">
-            <button class="btn btn-secondary btn-block dropdown-toggle text-left" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                {{ item?.name || 'Select' }}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <input type="text" class="form-control border-0" placeholder="Search" autofocus [(ngModel)]="searchText">
-                <div class="dropdown-divider"></div>
-                <button class="dropdown-item" [hidden]="listFiltered.length" type="button" disabled="true">Not found</button>
-                <ng-container *ngFor="let item of listFiltered; let last = last;">
-                    <button class="dropdown-item" type="button" (click)="onItemClick($event, item)">
-                        {{ item.name }}
-                    </button>                    
-                    <div class="dropdown-divider" [hidden]="last"></div>                    
-                </ng-container>                
+        <app-search [list]="users" (itemClick)="onItemClick($event)"></app-search>
+
+        <div class="pb-3"></div>
+
+        <div *ngIf="user">
+            <div class="card">
+                <div class="card-body">                    
+                    <h4 class="card-title">{{ user.name }}</h4>
+                    <p class="card-text">
+                        {{ user.email }}<br>
+                        {{ user.phone }}<br>
+                        {{ user.website }}<br>
+                        {{ user.fullAddress }}<br>
+                        {{ user.fullCompany }}
+                    </p>                    
+                </div>
             </div>
         </div>
 
-        <div class="pb-3"></div>
+        <div *ngIf="!user">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">No Data Found</h4>
+                </div>                
+            </div>
+        </div>
 
-        {{ item | json }}
-
-        <div class="pb-3"></div>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse egestas mauris diam, gravida lobortis
-            libero consequat ut. Aliquam vel mollis tortor. Proin placerat ligula nec mi blandit malesuada. Vestibulum
-            non lobortis lorem. Vivamus at ante libero. Mauris accumsan tempor lacinia. Vivamus aliquam luctus libero
-            sed tristique. Nulla pharetra, felis id eleifend pellentesque, arcu eros placerat velit, at condimentum
-            velit massa et nulla. Ut aliquet pharetra suscipit. Sed mi purus, posuere ut aliquam nec, sodales nec quam.
-            Ut molestie odio risus, a mollis orci laoreet non.</p>
-        <p>Nam laoreet magna sit amet tortor ornare laoreet. Nulla non tincidunt lacus. Vestibulum eget aliquam arcu.
-            Praesent nec lectus faucibus, maximus leo vel, bibendum elit. Morbi interdum gravida erat, et tempus lorem
-            blandit nec. Nulla et ligula velit. Aliquam erat volutpat. Fusce faucibus mauris in aliquet tempor. Morbi
-            dignissim massa id nisl interdum lobortis ut non lorem. Mauris sed varius nibh, vel pellentesque lacus.
-            Donec lobortis sapien vitae nisi ornare fringilla.</p>
-        <p>Aliquam vitae diam eu quam efficitur porta. Duis vehicula libero id arcu porttitor, nec mollis est aliquam.
-            Nunc quis porttitor enim. Nulla tincidunt sed nunc eget pretium. Quisque eget mollis mauris. Etiam ligula
-            enim, ornare eu mattis at, dictum sit amet lacus. Duis id dignissim nulla. Vestibulum volutpat ullamcorper
-            tortor. Mauris ut urna id dolor tristique convallis.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse egestas mauris diam, gravida lobortis
-            libero consequat ut. Aliquam vel mollis tortor. Proin placerat ligula nec mi blandit malesuada. Vestibulum
-            non lobortis lorem. Vivamus at ante libero. Mauris accumsan tempor lacinia. Vivamus aliquam luctus libero
-            sed tristique. Nulla pharetra, felis id eleifend pellentesque, arcu eros placerat velit, at condimentum
-            velit massa et nulla. Ut aliquet pharetra suscipit. Sed mi purus, posuere ut aliquam nec, sodales nec quam.
-            Ut molestie odio risus, a mollis orci laoreet non.</p>
-        <p>Nam laoreet magna sit amet tortor ornare laoreet. Nulla non tincidunt lacus. Vestibulum eget aliquam arcu.
-            Praesent nec lectus faucibus, maximus leo vel, bibendum elit. Morbi interdum gravida erat, et tempus lorem
-            blandit nec. Nulla et ligula velit. Aliquam erat volutpat. Fusce faucibus mauris in aliquet tempor. Morbi
-            dignissim massa id nisl interdum lobortis ut non lorem. Mauris sed varius nibh, vel pellentesque lacus.
-            Donec lobortis sapien vitae nisi ornare fringilla.</p>
-        <p>Aliquam vitae diam eu quam efficitur porta. Duis vehicula libero id arcu porttitor, nec mollis est aliquam.
-            Nunc quis porttitor enim. Nulla tincidunt sed nunc eget pretium. Quisque eget mollis mauris. Etiam ligula
-            enim, ornare eu mattis at, dictum sit amet lacus. Duis id dignissim nulla. Vestibulum volutpat ullamcorper
-            tortor. Mauris ut urna id dolor tristique convallis.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse egestas mauris diam, gravida lobortis
-            libero consequat ut. Aliquam vel mollis tortor. Proin placerat ligula nec mi blandit malesuada. Vestibulum
-            non lobortis lorem. Vivamus at ante libero. Mauris accumsan tempor lacinia. Vivamus aliquam luctus libero
-            sed tristique. Nulla pharetra, felis id eleifend pellentesque, arcu eros placerat velit, at condimentum
-            velit massa et nulla. Ut aliquet pharetra suscipit. Sed mi purus, posuere ut aliquam nec, sodales nec quam.
-            Ut molestie odio risus, a mollis orci laoreet non.</p>
-        <p>Nam laoreet magna sit amet tortor ornare laoreet. Nulla non tincidunt lacus. Vestibulum eget aliquam arcu.
-            Praesent nec lectus faucibus, maximus leo vel, bibendum elit. Morbi interdum gravida erat, et tempus lorem
-            blandit nec. Nulla et ligula velit. Aliquam erat volutpat. Fusce faucibus mauris in aliquet tempor. Morbi
-            dignissim massa id nisl interdum lobortis ut non lorem. Mauris sed varius nibh, vel pellentesque lacus.
-            Donec lobortis sapien vitae nisi ornare fringilla.</p>
-        <p>Aliquam vitae diam eu quam efficitur porta. Duis vehicula libero id arcu porttitor, nec mollis est aliquam.
-            Nunc quis porttitor enim. Nulla tincidunt sed nunc eget pretium. Quisque eget mollis mauris. Etiam ligula
-            enim, ornare eu mattis at, dictum sit amet lacus. Duis id dignissim nulla. Vestibulum volutpat ullamcorper
-            tortor. Mauris ut urna id dolor tristique convallis.</p>
+        <img class="img-fluid rounded mt-3" src="https://picsum.photos/1920/700" alt="">
 
     </div>
 </div>
