@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">            
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item" [routerLinkActive]="'active'">
                 <a class="nav-link" [routerLink]="['/home']">Home</a>
             </li>
@@ -15,12 +15,16 @@
             <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: false }">
                 <a class="nav-link" [routerLink]="['/posts']">Posts</a>
             </li>
-            <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: false }">
-                <a class="nav-link" [routerLink]="['/product']">Products</a>
+            <li class="nav-item" *ngIf="isLoggedIn" [routerLinkActive]="'active'"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" [routerLink]="['/products']">Products</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn" [routerLinkActive]="'active'">
+                <a class="nav-link" [routerLink]="['/products/type']">Types</a>
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
                 <a class="nav-link" [routerLink]="['/contact']">Contact</a>
-            </li>            
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" *ngIf="isLoggedIn">
@@ -30,10 +34,16 @@
                 <a class="nav-link" [routerLink]="['/login']">Login</a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn" [routerLinkActive]="'active'">
-                <a class="nav-link" [routerLink]="['/profile']">Profile</a>
-            </li>
-            <li class="nav-item" *ngIf="isLoggedIn" [routerLinkActive]="'active'">
                 <a class="nav-link" [routerLink]="['/users']">Users</a>
+            </li>
+            <li class="nav-item dropdown" *ngIf="types.length">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{ type.name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <button *ngFor="let t of types" type="button" class="dropdown-item" [ngClass]="{ 'active': t.id === type.id }" [value]="t.id" (click)="onTypeClick($event)">{{t.name}}</button>
+                </div>
             </li>
             <li>
                 <a *ngIf="isLoggedIn" class="nav-link" href="#" (click)="onLogoutClick($event)">Logout</a>

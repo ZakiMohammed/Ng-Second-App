@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, ProductData } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-product-list',
@@ -27,9 +29,19 @@ export class ProductListComponent implements OnInit {
     // });
   }
   
-  constructor(private productService: ProductService) { 
+  constructor(
+    private authService: AuthService,
+    private productService: ProductService,
+    private sharedService: SharedService
+  ) { 
     this.productData = new ProductData();
-    this.products = this.productData.getProducts();
+    sharedService.getAuth().subscribe(auth => {      
+      if (auth.type) {
+        this.products = this.productData.getProducts().filter(i => i.typeId === +auth.type.id);
+      } else {
+        this.products = [];
+      }
+    });
   }
 
   ngOnInit() {
@@ -37,6 +49,11 @@ export class ProductListComponent implements OnInit {
     //   this.products = response;
     //   this.loader = false;
     // });
+
+    let auth = this.authService.getData();
+    if (auth.type) {
+      this.products = this.productData.getProducts().filter(i => i.typeId === +auth.type.id); 
+    }
   }
 
   // onSearchChange($event: any) {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { Auth } from '../models/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,10 @@ export class AuthService {
 
   constructor() { }
 
-  setData(user: User) {
-    localStorage.setItem('AUTH_DATA', JSON.stringify(user));
+  setData(auth: Auth) {
+    localStorage.setItem('AUTH_DATA', JSON.stringify(auth));
   }
-  getData(): User {
+  getData(): Auth {
     return JSON.parse(localStorage.getItem('AUTH_DATA'));
   }  
   clearData(): void {

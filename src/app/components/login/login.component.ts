@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ProductData } from 'src/app/models/product';
 
 declare var window: any;
 
@@ -48,7 +49,12 @@ export class LoginComponent implements OnInit {
       this.userService.getUsers().subscribe(users => {
         let user = users.find(i => i.email === email && i.username === userName);
         if (user) {
-          this.authService.setData(user);
+          let types = new ProductData().getProductTypes();
+          this.authService.setData({
+            user: user,
+            type: types[0],
+            types: types
+          });
           // this.route.navigateByUrl('/home');
           window.location = 'home';
         } else {

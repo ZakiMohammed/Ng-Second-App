@@ -16,13 +16,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { PostPageComponent } from './components/post-page/post-page.component';
 import { UserViewComponent } from './components/user-view/user-view.component';
+import { ProductTypeComponent } from './components/product-type/product-type.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'product', component: ProductListComponent },
-  { path: 'product/:id', component: ProductViewComponent },
+  { path: 'products', component: ProductListComponent, canActivate: [AuthGuard] },
+  { path: 'products/type', component: ProductTypeComponent, canActivate: [AuthGuard] },
+  { path: 'products/:id', component: ProductViewComponent, canActivate: [AuthGuard] },
   { path: 'posts', component: PostPageComponent },
   { path: 'posts/:id', component: PostViewComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col">
+        <h3>Product Types</h3>
+        <hr>
+
+        <form novalidate [formGroup]="frm" (ngSubmit)="onSubmit($event)">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter type name" formControlName="name">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" [disabled]="!frm.valid">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of list; let i = index;">
+                {{ item.name }}
+                <button type="button" class="btn btn-sm btn-danger float-right"
+                    (click)="onRemoveClick($event, item, i)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </li>
+        </ul>
+
+    </div>
+</div>
