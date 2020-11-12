@@ -28,7 +28,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a [routerLink]="['/profile']" class="nav-link">Welcome {{ user?.name }}</a>
+                <a [routerLink]="['/profile']" class="nav-link">Welcome {{ userName }}</a>
             </li>
             <li class="nav-item" *ngIf="!isLoggedIn" [routerLinkActive]="'active'">
                 <a class="nav-link" [routerLink]="['/login']">Login</a>
